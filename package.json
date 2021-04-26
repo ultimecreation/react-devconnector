@@ -1,0 +1,30 @@
+{
+  "name": "react-devconnector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ultimecreation/react-devconnector.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ultimecreation/react-devconnector/issues"
+  },
+  "homepage": "https://github.com/ultimecreation/react-devconnector#readme",
+  "dependencies": {
+    "argon2": "^0.27.2",
+    "config": "^3.3.6",
+    "express": "^4.17.1",
+    "express-validator": "^6.10.1",
+    "gravatar": "^1.8.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.5",
+    "request": "^2.88.2"
+  }
+}
