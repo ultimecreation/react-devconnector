@@ -1,10 +1,11 @@
 const express = require ('express')
 require('dotenv').config()
-const dbConnection = require('./backend/config/dbConnection')
-
 const app = express()
+const dbConnection = require('./config/dbConnection')
 dbConnection()
-app.get('/',(req,res)=> res.send('ok'))
+const router = require('./Router/routes')
+
+app.use('/',router)
 
 
 const PORT = process.env.Port || 3001
