@@ -5,7 +5,7 @@ module.exports = new class UserModel{
         try {
             return UserEntity.findById(id).select("-password")
         } catch (error) {
-            console.log(error)
+            
             return false
         }
     }

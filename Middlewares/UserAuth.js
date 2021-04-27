@@ -18,8 +18,10 @@ module.exports = new class UserAuth{
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             req.user = decoded.user
             
-            const userExists = await UserModel.getUserById(req.user.id)
+            const userExists = await UserModel.getUserById(req.user._id)
+            
             if(userExists){
+               
                 next()
             }
         } catch (error) {
