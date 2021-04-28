@@ -262,7 +262,7 @@ module.exports = new (class ProfilesController {
 
     getGithubRepos = (req,res)=>{
         try {
-            // set the request option and send the rquest
+            // set the request options and send the request
             const options = {
                 uri:`https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`,
                 method:'GET',
