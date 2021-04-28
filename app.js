@@ -14,5 +14,5 @@ app.use(express.json({extended:false}))
 app.use(express.urlencoded({ extended:true }))
 
 app.use('/',router)
-const PORT = process.env.Port || 3001
+const PORT = process.env.SERVER_PORT || 3001
 app.listen(PORT,()=>console.log('server started'))

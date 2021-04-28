@@ -1,0 +1,19 @@
+/* The following block can be included in a custom.scss */
+
+/* make the customizations */
+$theme-colors: (
+    "primary": #2821A2,
+    "danger": #A22821,
+    "success":#21A228
+);
+$enable-rounded:false;
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Quicksand&display=swap');
+/* import bootstrap to set changes */
+@import "../node_modules/bootstrap/scss/bootstrap";
+*{
+    font-family: 'Quicksand'!important;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Lato';
+}
