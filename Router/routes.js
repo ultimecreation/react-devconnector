@@ -16,9 +16,18 @@ const UsersController = require('../Controllers/UsersController')
 const UserAuth = require('../Middlewares/UserAuth')
 const ProfilesController = require('../Controllers/ProfilesController')
 const UserProfileValidator = require('../Middlewares/UserProfileValidator')
+const PostsValidator = require('../Middlewares/PostsValidator')
 
 
-router.get('/api/articles/liste',PostsController.index)
+router.put('/api/articles/commentaires/ajouter/:post_id',[UserAuth.checkIfAuthenticated,PostsValidator.validateComment],PostsController.addComment)
+router.delete('/api/articles/commentaires/supprimer/:post_id/commentaire/:comment_id',[UserAuth.checkIfAuthenticated],PostsController.removeComment)
+
+router.get('/api/articles/liste',[UserAuth.checkIfAuthenticated],PostsController.index)
+router.get('/api/articles/:post_id',[UserAuth.checkIfAuthenticated],PostsController.show)
+router.post('/api/articles/creer',[UserAuth.checkIfAuthenticated,PostsValidator.validate ],PostsController.create)
+router.delete('/api/articles/supprimer/:post_id',[UserAuth.checkIfAuthenticated],PostsController.delete)
+router.put('/api/articles/likes/:post_id',[UserAuth.checkIfAuthenticated],PostsController.likePost)
+router.delete('/api/articles/likes/:post_id',[UserAuth.checkIfAuthenticated],PostsController.unLikePost)
 
 router.get('/api/utilisateurs/liste',UsersController.index)
 
