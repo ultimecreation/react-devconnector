@@ -3,6 +3,7 @@ const AuthModel = require("../Models/AuthModel");
 const argon2 = require("argon2");
 const gravatar = require("gravatar");
 const jwt = require("jsonwebtoken");
+const UserModel = require("../Models/UserModel");
 
 module.exports = new (class AuthController {
     login = async (req, res) => {
@@ -38,12 +39,10 @@ module.exports = new (class AuthController {
         }
 
         // remove sensitive data and set the payload
-        user.password,user.__v = undefined;
-        const token = jwt.sign(
-            { user},
-            process.env.JWT_SECRET,
-            {expiresIn: 3600*24*7}
-        );
+        user.password, user.__v = undefined
+        const token = jwt.sign({ user }, process.env.JWT_SECRET, {
+            expiresIn: 3600 * 24 * 7,
+        });
         return res.status(200).json({
             success: true,
             token: token,
@@ -81,11 +80,9 @@ module.exports = new (class AuthController {
         const registeredUser = await AuthModel.save(user);
 
         if (registeredUser) {
-            const payload = {
-                id: registeredUser._id,
-            };
+            registeredUser.password = undefined
             const token = jwt.sign(
-                { user:{ id: registeredUser._id} },
+                { user:registeredUser},
                 process.env.JWT_SECRET,
                 { expiresIn: 3600 * 24 * 7}
             );
@@ -99,6 +96,17 @@ module.exports = new (class AuthController {
                 success: false,
                 message: "Something went wrong",
             });
+        }
+    };
+
+    validateToken = async (req, res) => {
+        try {
+            
+            const user = await UserModel.getUserById(req.user._id)
+            res.json(user);
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).send("Server Error");
         }
     };
 })();

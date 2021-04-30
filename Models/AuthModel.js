@@ -15,4 +15,6 @@ module.exports = new class AuthModel{
             console.log(error)
         }
     }
+
+    
 }()
