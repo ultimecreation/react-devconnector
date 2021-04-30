@@ -12,6 +12,7 @@ import { USER_LOGOUT } from "./components/redux/auth/types";
 import { loadUser } from "./components/redux/auth/actions";
 import { useEffect } from "react";
 import setAuthToken from "./utils/setAuthToken";
+import PrivateRoute from "./components/routing/PrivateRoute";
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -39,7 +40,7 @@ const App = () => {
                             />
                             <Route exact path="/connexion" component={Login} />
                             
-                            <Route
+                            <PrivateRoute
                                 exact
                                 path="/mon-compte"
                                 component={MyAccount}
