@@ -1,3 +1,5 @@
+
+import { DELETE_ACCOUNT } from "../profile/types";
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
@@ -42,6 +44,15 @@ const authReducer = (state = initialState, action) => {
                 token: null,
                 isAuthenticated: false,
                 loading: false,
+                user: null
+            };
+        case DELETE_ACCOUNT:
+            return {
+              ...state,
+              token: null,
+              isAuthenticated: false,
+              loading: false,
+              user: null
             };
         default:
             return state;

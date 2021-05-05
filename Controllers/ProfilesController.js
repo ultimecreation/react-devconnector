@@ -35,7 +35,6 @@ module.exports = new (class ProfilesController {
             // url param does not match a valid objectId,return an error
             if (error.kind === "ObjectId") {
                 return res.status(400).json({
-                    success: false,
                     message: "Profil non trouvé",
                 });
             }
@@ -105,8 +104,9 @@ module.exports = new (class ProfilesController {
 
         // no errors found, bind incoming data and save to db
         const profileToUpdate = this.bindIncomingData(req);
+       
         const profileUpdated = await ProfileModel.update(
-            req.user.id,
+            req.user._id,
             profileToUpdate
         );
 
@@ -320,6 +320,8 @@ module.exports = new (class ProfilesController {
         if (status) profile.status = status;
         if (githubUsername) profile.githubUsername = githubUsername;
         if (skills)
+        console.log(skills)
+            
             profile.skills = skills.split(",").map((skill) => skill.trim());
 
         // build social object

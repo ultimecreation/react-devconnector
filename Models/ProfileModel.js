@@ -60,6 +60,7 @@ module.exports = new (class UserModel {
     };
     delete = async (userId) => {
         try {
+            await PostEntity.deleteMany({user: userId})
             await ProfileEntity.findOneAndRemove({ user: userId });
             await UserEntity.findByIdAndRemove({ _id: userId });
             return true;

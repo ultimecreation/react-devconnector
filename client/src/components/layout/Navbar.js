@@ -25,14 +25,14 @@ const Navbar = ({isAuthenticated,logout,loading}) => {
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
                         
-                        <Link className="nav-link" to="/developpeurs">
+                        <Link className="nav-link" to="/profils">
                            Développeurs
                         </Link>
                     </li>
                     {!loading && isAuthenticated  
                     ? <>
                         <li className="nav-item">
-                            <Link onClick={logout}  className="nav-link">
+                            <Link onClick={logout} to="/"  className="nav-link">
                                 Déconnexion
                             </Link>
                         </li>
@@ -55,9 +55,6 @@ const Navbar = ({isAuthenticated,logout,loading}) => {
                         </li>
                     </>
                     }
-                   
-                    
-                    
                 </ul>
             </div>
             </div>
