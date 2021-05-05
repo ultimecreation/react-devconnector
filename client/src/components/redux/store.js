@@ -4,6 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import alertReducer from "./alert/reducer";
 import authReducer from './auth/reducer'
 import profileReducer from './profile/reducer'
+import postReducer from './post/reducer'
 
 const initialState = {}
 const middlewares =[thunk]
@@ -11,7 +12,8 @@ const store = createStore(
     combineReducers({
         alertReducer,
         authReducer,
-        profileReducer
+        profileReducer,
+        postReducer
     }),
     initialState,
     composeWithDevTools(applyMiddleware(...middlewares))

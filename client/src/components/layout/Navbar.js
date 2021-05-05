@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import {logout} from '../redux/auth/actions'
 const Navbar = ({isAuthenticated,logout,loading}) => {
     return (
-        <nav className="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
+        <nav className="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
             <div className="container">
             <Link className="navbar-brand" to="/">
               <img src={`${process.env.PUBLIC_URL}/img/icon.jpg`} alt=""/> DevConnect
@@ -32,10 +32,21 @@ const Navbar = ({isAuthenticated,logout,loading}) => {
                     {!loading && isAuthenticated  
                     ? <>
                         <li className="nav-item">
+                            <Link className="nav-link" to="/articles">
+                                Articles
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/articles/creer">
+                                Créer article
+                            </Link>
+                        </li>
+                        <li className="nav-item">
                             <Link onClick={logout} to="/"  className="nav-link">
                                 Déconnexion
                             </Link>
                         </li>
+                        
                         <li className="nav-item">
                             <Link className="nav-link" to="/mon-compte">
                                 Mon compte
