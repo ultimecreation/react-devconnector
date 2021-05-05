@@ -1,5 +1,5 @@
 
-import { DELETE_POST, GET_POSTS,POST_ERROR, UPDATE_LIKES,ADD_POST } from "./types"
+import { DELETE_POST, GET_POSTS,POST_ERROR, UPDATE_LIKES,ADD_POST, GET_POST,ADD_COMMENT, REMOVE_COMMENT } from "./types"
 
 const initialState = {
     posts: [],
@@ -16,6 +16,13 @@ const postReducer = (state=initialState,action) =>{
                 posts: action.payload,
                 loading:false
             }
+        case GET_POST:
+        
+        return {
+            ...state,
+            post: action.payload,
+            loading:false
+        }
         case POST_ERROR:
             return {
                 ...state,
@@ -25,7 +32,7 @@ const postReducer = (state=initialState,action) =>{
         case ADD_POST:
         return {
             ...state,
-            posts: [action.payload.post,...state.posts],
+            posts: [action.payload,...state.posts],
             loading:false
         }
         case DELETE_POST:
@@ -44,6 +51,19 @@ const postReducer = (state=initialState,action) =>{
                     :   post
                 )
             }
+        case ADD_COMMENT:
+        return {
+            ...state,
+            post: {...state.post, comments: action.payload},
+            loading: false
+        }
+        case REMOVE_COMMENT:
+        
+        return {
+            ...state,
+            post: {...state.post, comments: action.payload},
+           loading: false
+        }
         default:
         return state 
     }

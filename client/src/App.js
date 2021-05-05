@@ -20,6 +20,7 @@ import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
 import PostForm from "./components/posts/PostForm";
+import Post from "./components/post/Post";
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -46,6 +47,7 @@ const App = () => {
 
                             <PrivateRoute exact path="/articles" component={Posts}/>
                             <PrivateRoute exact path="/articles/creer" component={PostForm}/>
+                            <PrivateRoute exact path="/articles/:post_id" component={Post}/>
                             <PrivateRoute exact path="/mon-compte"  component={MyAccount} />
                             <PrivateRoute exact path="/creer-profil" component={CreateProfile} />
                             <PrivateRoute exact path="/editer-profil"  component={EditProfile} />

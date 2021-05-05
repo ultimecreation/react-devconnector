@@ -6,7 +6,6 @@ import Spinner from '../layout/Spinner'
 import { Link } from 'react-router-dom'
 import {FaThumbsUp,FaThumbsDown,FaTrashAlt} from 'react-icons/fa'
 import Moment from 'react-moment'
-import PostForm from './PostForm'
 
 const Posts = ({getPosts,loading,posts,currentUser,addLike,removeLike,deletePost}) => {
     useEffect(()=>{
@@ -20,7 +19,7 @@ const Posts = ({getPosts,loading,posts,currentUser,addLike,removeLike,deletePost
                 <>
                    <div className="col-12">
                        <h1>Articles</h1>
-                       <PostForm/>
+                       
                        {!posts.loading && posts.map(post =>{
                            return <div className=" p-2 my-3" key={post._id}>
                                <div className="d-md-flex">
@@ -47,7 +46,7 @@ const Posts = ({getPosts,loading,posts,currentUser,addLike,removeLike,deletePost
                                             className="btn btn-outline-info btn-sm mx-1 px-3" 
                                             onClick={e=> removeLike(post._id)}><FaThumbsDown/>
                                         </button>
-                                        <Link to="#!" className="btn btn-info btn-sm">Commentaires </Link>
+                                        <Link to={`/articles/${post._id}`} className="btn btn-info btn-sm">Commentaires </Link>
                                        {
                                             !loading && (currentUser._id === post.user) &&  
                                             <button 
