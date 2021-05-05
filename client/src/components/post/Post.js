@@ -18,7 +18,7 @@ const Post = ({getPost,loading,match,post,authUser,userLoading,deleteComment}) =
             <Spinner />
         ) : (
             <>
-               <div className="col-12">
+               <div className="col-9 mx-auto">
                    <Link to="/articles" className="text-primary">&lt;&lt; Retour aux articles</Link>
                    <h1>Article</h1>
                   

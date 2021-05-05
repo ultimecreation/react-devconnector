@@ -32,7 +32,7 @@ const UpdateProfileEducation = ({updateEducation,history}) => {
     return (
         <>
             <h1 className="text-primary">Ajouter un diplome</h1>
-            <div className="col-8 mx-auto">
+            <div className="col-9 mx-auto">
        
                 <form onSubmit={e=> onSubmit(e)} className="mb-5">
                     <fieldset className="my-5">

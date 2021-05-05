@@ -21,9 +21,9 @@ const ProfileItem = ({ profile }) => {
                     />
                 </figure>
                 <div className="w-75 ml-2 ml-md-5">
-                    <p>Companie: {profile.company} </p>
-                    <p>Adresse: {profile.location}</p>
-                    <p>Compétences:{' '}
+                    <p>Companie: <br/> {profile.company} </p>
+                    <p>Adresse: <br/>{profile.location}</p>
+                    <p>Compétences: <br/>
                         {profile.skills.slice(0,3).map((skill,index) =>{
                            return <span key={index}><BiCheck size={24} color="green"/>{skill} </span>
                         })} 

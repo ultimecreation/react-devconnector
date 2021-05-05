@@ -25,7 +25,7 @@ const Profile = ({ match, getProfileById,getGithubRepos,repos, profile, loading,
                 <Spinner />
             ) : (
                 <>
-                    <div className="col-12 d-flex justify-content-between align-items-center mx-auto">
+                    <div className="col-9 mx-auto d-flex justify-content-between align-items-center ">
                         <Link to="/profils">&lt;&lt; Retour aux profils</Link>
 
                         {auth.isAuthenticated &&
@@ -36,7 +36,7 @@ const Profile = ({ match, getProfileById,getGithubRepos,repos, profile, loading,
                             )}
                     </div>
 
-                    <div className="col-12 ">
+                    <div className="col-9 mx-auto ">
                         <div className="bg-info w-100 text-center text-light py-2">
                             <img
                                 src={profile.user.avatar}

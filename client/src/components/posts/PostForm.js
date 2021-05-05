@@ -16,7 +16,7 @@ const PostForm = ({addPost,history}) => {
     return (
         <div>
             <h1>Créer un article</h1>
-            <div className="col-8 mx-auto">
+            <div className="col-9 mx-auto">
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <label htmlFor="email">Contenu</label>

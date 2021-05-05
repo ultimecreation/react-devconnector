@@ -17,20 +17,19 @@ const Posts = ({getPosts,loading,posts,currentUser,addLike,removeLike,deletePost
                 <Spinner />
             ) : (
                 <>
-                   <div className="col-12">
+                   <div className="col-9 mx-auto">
                        <h1>Articles</h1>
                        
                        {!posts.loading && posts.map(post =>{
                            return <div className=" p-2 my-3" key={post._id}>
                                <div className="d-md-flex">
-                                    <figure className="w-50 w-md-25 mx-auto text-center">
-                                       <img src={post.avatar ===null ?'loading':post.avatar} alt={post.name} className="img-fluid w-100 "/>
-                                        <figcaption className="mx-1">
-                                            <Link to={`/profil/${post.user}`} className="text-info font-weight-bold" >{post.name} </Link>
-                                        </figcaption>
+                                    <figure className="mw-50 text-center">
+                                       <img src={post.avatar ===null ?'loading':post.avatar} alt={post.name} className="img-fluid w-100 rounded-circle"/>
                                     </figure>
-                                   
-                                   <p className="w-md-75 ml-3">{post.text} </p>
+                                    <div className="ml-3">
+                                    <Link to={`/profil/${post.user}`} className="text-info font-weight-bold  pr-1 " >{post.name} </Link> a annoncé:
+                                   <p className="mw-75 ml-3">{post.text} </p>
+                                    </div>
                                </div>
                                <div className="d-flex justify-content-between align-items-center">
                                    <div>

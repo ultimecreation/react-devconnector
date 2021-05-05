@@ -16,7 +16,7 @@ const Profiles = ({ getProfiles, profiles, loading }) => {
             ) : (
                 <>
                     <h1>Nos Développeurs</h1>
-                    <div className="col mx-auto">
+                    <div className="col-9 mx-auto">
                         <div className="row">
                             {profiles.length === 0 ? (
                                 <p>Pas de profils à afficher</p>
