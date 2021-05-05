@@ -4,8 +4,9 @@ import { setAlert } from "../redux/alert/actions";
 import { registerUser } from "../redux/auth/actions";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router";
+import { Fragment } from "react";
 
-const Register = ({ setAlert, registerUser, isAuthenticated }) => {
+const Register = ({ setAlert, registerUser,isAuthenticated  }) => {
     const [formData, setFromData] = useState({
         name: "",
         email: "",
@@ -31,10 +32,9 @@ const Register = ({ setAlert, registerUser, isAuthenticated }) => {
             setFromData({name:"",email:"",password:"",password_confirm:""});
         }
     };
-
     if(isAuthenticated) return <Redirect to="/mon-compte"/>
     return (
-        <Redirect>
+        <Fragment>
             <h1>Inscription</h1>
             <div className="col-8 mx-auto">
                 <form onSubmit={onSubmit}>
@@ -91,7 +91,7 @@ const Register = ({ setAlert, registerUser, isAuthenticated }) => {
                     />
                 </form>
             </div>
-        </Redirect>
+        </Fragment>
     );
 };
 Register.propTypes = {

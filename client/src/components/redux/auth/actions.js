@@ -9,17 +9,18 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     USER_LOGOUT,
+    CLEAR_PROFILE,
 } from "./types";
 
 export const loadUser = ()=> async dispatch =>{
     if(localStorage.token){
-        console.log(localStorage.token)
+        
         setAuthToken(localStorage.token)
     }
 
     try {
         const res = await axios.get('http://localhost:3001/api/validation-token')
-        console.log(res.data)
+        
         dispatch({type:USER_LOADED,payload:res.data})
 
     } catch (error) {
@@ -64,7 +65,7 @@ export const login = (email, password) => {
 
         try {
             const res = await axios.post("/api/connexion", body, config);
-            console.log(res);
+           
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data,
@@ -83,6 +84,8 @@ export const login = (email, password) => {
     };
 };
 
-export const logout = ()=> dispatch =>{
-    dispatch({type:USER_LOGOUT})
+export const logout = () =>  dispatch =>{
+    dispatch({type: CLEAR_PROFILE})
+     dispatch({type: USER_LOGOUT})
+    
 }
