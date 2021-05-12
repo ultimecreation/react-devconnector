@@ -7,7 +7,7 @@ const dbConnection = async ()=>{
             useUnifiedTopology:true,
             useFindAndModify:false
         })
-        console.log('mongo db connected')
+       
         return db
     } catch (error) {
         console.log(error)

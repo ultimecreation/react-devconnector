@@ -11,10 +11,12 @@ const app = express()
 dbConnection()
 
 // Middlewares
+app.use(express.static('public'));
+app.use(express.static('client/build'));
 app.use(cors())
 app.use(express.json({extended:true}))
 app.use(express.urlencoded({ extended:true }))
 
 app.use('/',router)
 const PORT = process.env.SERVER_PORT || 3001
-app.listen(PORT,()=>console.log('server started'))
+app.listen(PORT)

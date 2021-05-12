@@ -1,0 +1,655 @@
+{
+	"info": {
+		"_postman_id": "424e55d4-370f-468f-8341-bb2188c63a8a",
+		"name": "devConnector Documentation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "authentification",
+			"item": [
+				{
+					"name": "connexion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"somemail@gmail.com\",\r\n    \"password\":\"somepassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/api/connexion",
+							"path": [
+								"api",
+								"connexion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "inscription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();\r",
+									"pm.environment.set(\"TOKEN\", data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "TOKEN",
+								"value": "{{TOKEN}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"some username\",\r\n    \"email\":\"somemail@gmail.com\",\r\n    \"password\":\"somepassword\",\r\n    \"password_confirm\":\"somepassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/api/inscription",
+							"path": [
+								"api",
+								"inscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "token validation",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/api/validation-token",
+							"path": [
+								"api",
+								"validation-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "articles",
+			"item": [
+				{
+					"name": "liste articles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/api/articles/liste",
+							"path": [
+								"api",
+								"articles",
+								"liste"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "creer article",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\":\"some text\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/api/articles/creer",
+							"path": [
+								"api",
+								"articles",
+								"creer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer article",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "/api/articles/supprimer/:article_id",
+							"path": [
+								"api",
+								"articles",
+								"supprimer",
+								":article_id"
+							],
+							"variable": [
+								{
+									"key": "article_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail article",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/api/articles/:article_id",
+							"path": [
+								"api",
+								"articles",
+								":article_id"
+							],
+							"variable": [
+								{
+									"key": "article_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ajouter like",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/api/articles/likes/:article_id",
+							"path": [
+								"api",
+								"articles",
+								"likes",
+								":article_id"
+							],
+							"variable": [
+								{
+									"key": "article_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer like",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/api/articles/likes/:article_id",
+							"path": [
+								"api",
+								"articles",
+								"likes",
+								":article_id"
+							],
+							"variable": [
+								{
+									"key": "article_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ajouter commentaire",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\":\"some new comment again\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/api/articles/commentaires/ajouter/:article_id",
+							"path": [
+								"api",
+								"articles",
+								"commentaires",
+								"ajouter",
+								":article_id"
+							],
+							"variable": [
+								{
+									"key": "article_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer commentaire",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/api/articles/commentaires/supprimer/:article_id/commentaire/:commentaire_id",
+							"path": [
+								"api",
+								"articles",
+								"commentaires",
+								"supprimer",
+								":article_id",
+								"commentaire",
+								":commentaire_id"
+							],
+							"variable": [
+								{
+									"key": "article_id",
+									"value": ""
+								},
+								{
+									"key": "commentaire_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profils",
+			"item": [
+				{
+					"name": "creer profil",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"Développeur\",\r\n    \"skills\":\"PHP,css\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/api/profils/creer",
+							"path": [
+								"api",
+								"profils",
+								"creer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mon profil",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/api/profils/mon-profil",
+							"path": [
+								"api",
+								"profils",
+								"mon-profil"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modifier profil",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"Dev\",\r\n    \"skills\":\" HTML, Css, Javascript\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/api/profils/modifier",
+							"path": [
+								"api",
+								"profils",
+								"modifier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "liste profils",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "/api/profils",
+							"path": [
+								"api",
+								"profils"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "profil utilsateur unique",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "/api/profils/utilisateur/:user_id",
+							"path": [
+								"api",
+								"profils",
+								"utilisateur",
+								":user_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer le profil complet",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/api/profils/supprimer",
+							"path": [
+								"api",
+								"profils",
+								"supprimer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modifier profil experience",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Développeur\",\r\n    \"company\":\"exemple companie\",\r\n    \"from\":\"2014\",\r\n    \"to\":\"2016\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/api/profils/experience/modifier",
+							"path": [
+								"api",
+								"profils",
+								"experience",
+								"modifier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer profile experience",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/api/profils/experience/supprimer/:experience_id",
+							"path": [
+								"api",
+								"profils",
+								"experience",
+								"supprimer",
+								":experience_id"
+							],
+							"variable": [
+								{
+									"key": "experience_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modifier profil education",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"school\":\"un nom d'école\",\r\n    \"degree\":\"un niveau d'étude\",\r\n    \"fieldOfStudy\":\"une filliaire\",\r\n    \"from\":\"2013\",\r\n    \"to\":\"2016\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/api/profils/education/modifier",
+							"path": [
+								"api",
+								"profils",
+								"education",
+								"modifier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "supprimer profil education",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/api/profils/education/supprimer/:education_id",
+							"path": [
+								"api",
+								"profils",
+								"education",
+								"supprimer",
+								":education_id"
+							],
+							"variable": [
+								{
+									"key": "education_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "github repos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "/api/profile/github/:github_username",
+							"path": [
+								"api",
+								"profile",
+								"github",
+								":github_username"
+							],
+							"variable": [
+								{
+									"key": "github_username",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/ultimecreation/react-devconnector#readme",
   "dependencies": {
-    "argon2": "^0.27.2",
+    "bcrypt": "^5.0.1",
     "bootstrap": "^4.6.0",
     "concurrently": "^6.0.2",
     "cors": "^2.8.5",

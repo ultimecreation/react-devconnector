@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
 const AuthModel = require("../Models/AuthModel");
-const argon2 = require("argon2");
+const bcrypt = require("bcrypt");
 const gravatar = require("gravatar");
 const jwt = require("jsonwebtoken");
 const UserModel = require("../Models/UserModel");
@@ -27,9 +27,9 @@ module.exports = new (class AuthController {
         }
 
         // user found and return error if password is not verified
-        const passwordVerified = await argon2.verify(
-            user.password,
-            req.body.password
+        const passwordVerified = await bcrypt.compareSync(
+            req.body.password,
+            user.password
         );
         if (passwordVerified === false) {
             return res.status(400).json({
@@ -62,7 +62,7 @@ module.exports = new (class AuthController {
         }
 
         // no errors found, hash the password,get retrieve gravatar url
-        const hashedPassword = await argon2.hash(req.body.password_confirm);
+        const hashedPassword = await bcrypt.hashSync(req.body.password_confirm, 13);
         const avatar = await gravatar.url(req.body.email, {
             protocol: "https",
             s: "200",
