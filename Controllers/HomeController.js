@@ -3,11 +3,6 @@ module.exports = new class HomeController{
     
     index = (req,res)=>{
         const appDir = path.dirname(require.main.filename);
-        return res.sendFile(path.resolve(appDir, 'client/build/', 'index.html'));
-    }
-
-    showApi = (req,res)=>{
-        const appDir = path.dirname(require.main.filename);
         return res.sendFile(path.resolve(appDir, 'public/', 'api.html'));
     }
     

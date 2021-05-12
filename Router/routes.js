@@ -48,6 +48,5 @@ router.post('/api/connexion',UserValidator.validateLogin ,AuthController.login)
 router.post('/api/inscription',[UserValidator.validateRegister],AuthController.register)
 router.get('/api/validation-token',UserAuth.checkIfAuthenticated,AuthController.validateToken)
 
-router.get('/api',HomeController.showApi)
 router.get('/',HomeController.index)
 module.exports = router
